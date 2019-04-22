@@ -7,11 +7,12 @@
 
 import tornado.ioloop
 import tornado.web
-
+from tornado import gen
 class MainHandler(tornado.web.RequestHandler):
+    @gen.coroutine
     def get(self):
         import time
-        self.write("Hello world!\nI am chenweiqiu!")
+        self.write(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
